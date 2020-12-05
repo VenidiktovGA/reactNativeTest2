@@ -3,7 +3,7 @@
 Здесь работа с props для компонента в виде функции
 */
 import React from 'react'
-import { StyleSheet, Text, View, Image, Button, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, Alert, Platform } from 'react-native'
 import PropTypes from 'prop-types'; //Пакет для валидации props
 
 
@@ -107,7 +107,19 @@ export default Card;
 const styles = StyleSheet.create({
 	card: {
 		marginTop: 30,
-		backgroundColor: 'gold'
+		/*CSS в зависимости от платформы*/
+		...Platform.select({
+			ios: {
+				backgroundColor: 'red'
+			},
+			android: {
+				backgroundColor: 'orange'
+			},
+			web: {
+				backgroundColor: 'blue'
+			}
+		})
+		
 	},
 	userInfo: {
 		flexDirection: 'row',
@@ -126,6 +138,8 @@ const styles = StyleSheet.create({
 		aspectRatio: 1
 	},
 	photo: {
+		/*position:absolute, top:0, right:0,bottom:0,left:0*/
+		/*Так можно перекрывать элементы данным элементом*/
 		...StyleSheet.absoluteFill
 	},
 	buttonContainer: {
