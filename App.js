@@ -10,6 +10,7 @@ import {CardClass} from './src/CardClass'
 
 
 /*
+Привет
 */
 
 export default function App() {
